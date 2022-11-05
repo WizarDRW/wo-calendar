@@ -46,7 +46,7 @@
                     :style="getCss(e)"
                     class="wo-event"
                   >
-                    <strong></strong>
+                    <strong>Sedat Yiğit 13:00 -14:00</strong>
                   </div>
                 </div>
               </div>
@@ -172,8 +172,7 @@ export default {
         },
         {
           name: "Category3",
-          events: [
-          ],
+          events: [],
         },
       ],
     },
@@ -309,14 +308,17 @@ export default {
       const top = date.timeToY(e.start);
       const bottom = date.timeToY(e.end);
       const height = Math.max(20, bottom - top);
+      const colors = "linear-gradient(118deg, #2979ff, #82b1ff)";
       console.log(
-        `top: ${top}px; height: ${height}px; left: 0%; width: 100%;`
+        `top: ${top}px; height: ${height - 1}px; left: 0%; width: 100%;`
       );
-      return `top: ${top}px; height: ${height}px; left: 0%; width: 100%;`;
+      return `top: ${top}px; height: ${
+        height - 1
+      }px; left: 0%; width: 100%;background:${colors}!important`;
     },
     selectDate(e) {
       console.log(e);
-    }
+    },
   },
 };
 </script>
@@ -421,6 +423,8 @@ body {
   cursor: pointer;
   border-radius: 4px;
   pointer-events: all;
-  background-color: red;
+  text-align: left;
+  color: white;
+  letter-spacing: 1px;
 }
 </style>
