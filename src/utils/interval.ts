@@ -13,9 +13,10 @@ export default {
         }
     },
     timeToY(time: VTime, clamp = true): number | false {
-        let y = this.timeDelta(time)
+        let y: any = this.timeDelta(time)
         if (y !== false) {
             y *= (52 * 60)
+            
 
             if (clamp) {
                 if (y < 0) {
@@ -27,7 +28,7 @@ export default {
             }
         }
 
-        return y
+        return (y - 1920)
     },
     timeDelta(time: VTime): number | false {
         const minutes = this.parseTime(time)
