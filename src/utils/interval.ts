@@ -15,15 +15,14 @@ export default {
     timeToY(time: VTime, clamp = true): number | false {
         let y = this.timeDelta(time)
         if (y !== false) {
-            y *= (52 * 15)
-            console.log(y);
+            y *= (52 * 60)
 
             if (clamp) {
                 if (y < 0) {
                     y = 0
                 }
-                if (y > (52 * 15)) {
-                    y = (52 * 15)
+                if (y > (52 * 60)) {
+                    y = (52 * 60)
                 }
             }
         }
@@ -38,10 +37,9 @@ export default {
         }
 
         const min: number = this.firstMinute()
-        const gap: number = 52 * 15
-        console.log(minutes, min, gap);
-        console.log((minutes - min) / gap);
-
+        const gap: number = 52 * 60
+        console.log(minutes);
+        
         return (minutes - min) / gap
     },
     parseTime(input: any): number | false {
@@ -53,13 +51,13 @@ export default {
                 return false
             }
 
-            return parseInt(parts[1]) * 60 + parseInt(parts[3] || '0')
+            return parseInt(parts[1]) * 240 + parseInt(parts[3] || '0')
         } else if (typeof input === 'object') {
             if (typeof input.hour !== 'number' || typeof input.minute !== 'number') {
                 return false
             }
 
-            return input.hour * 60 + input.minute
+            return input.hour * 240 + (input.minute * 4)
         } else {
             return false
         }
@@ -69,7 +67,7 @@ export default {
 
         return time !== false && time >= 0 && time <= MINUTES_IN_DAY
             ? time
-            : 15 * 52
+            : 60 * 52
     },
     parsedFirstTime(): number | false {
         return this.parseTime({ hour: 0, minute: 0 })
