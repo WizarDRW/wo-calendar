@@ -78,8 +78,8 @@ export default {
                 month: 10,
                 day: 30,
                 weekday: 0,
-                hour: 10,
-                minute: 0,
+                hour: 9,
+                minute: 28,
                 hasDay: true,
                 hasTime: true,
                 past: false,
@@ -93,8 +93,8 @@ export default {
                 month: 10,
                 day: 30,
                 weekday: 0,
-                hour: 10,
-                minute: 5,
+                hour: 9,
+                minute: 35,
                 hasDay: true,
                 hasTime: true,
                 past: false,
@@ -277,15 +277,17 @@ export default {
       const bottom = date.timeToY(e.end);
       const height = Math.max(20, bottom - top);
       const colors = "linear-gradient(118deg, #2979ff, #82b1ff)";
-      console.log(
-        `top: ${top}px; height: ${height - 1}px; left: 0%; width: 100%;`
-      );
+      // console.log(
+      //   `top: ${top}px; height: ${height - 1}px; left: 0%; width: 100%;`
+      // );
       return `top: ${top}px; height: ${
         height - 1
       }px; left: 0%; width: 100%;background:${colors}!important`;
     },
     selectDate(e) {
-      console.log(e);
+      let hour = (e.layerY/4)/60 > 0 ? 8+((e.layerY/4)/60):8;
+      let minute = (e.layerY/4)-(Math.floor((e.layerY/4)/60)*60);
+      this.$emit('click:time', { $event: e, hour: Math.floor(hour), minute: Math.floor(minute)})
     },
   },
 };
@@ -300,6 +302,7 @@ body {
   width: 100%;
   height: auto;
   background: #fff;
+  box-sizing: content-box;
 }
 .wo-head {
   width: 100%;
