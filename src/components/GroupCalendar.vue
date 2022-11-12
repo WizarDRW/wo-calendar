@@ -46,7 +46,7 @@
                     :style="getCss(e)"
                     class="wo-event"
                   >
-                    <strong>{{ e.name }}</strong>
+                    <strong> <slot :name="e.name" :item="e"></slot> </strong>
                   </div>
                 </div>
               </div>
@@ -64,117 +64,7 @@ export default {
   props: {
     resources: {
       type: Array,
-      default: [
-        { name: "Category1" },
-        {
-          name: "Category2",
-          events: [
-            {
-              name: "Deneme",
-              start: {
-                date: "2022-10-30",
-                time: "10:00",
-                year: 2022,
-                month: 10,
-                day: 30,
-                weekday: 0,
-                hour: 9,
-                minute: 28,
-                hasDay: true,
-                hasTime: true,
-                past: false,
-                present: true,
-                future: false,
-              },
-              end: {
-                date: "2022-10-30",
-                time: "11:00",
-                year: 2022,
-                month: 10,
-                day: 30,
-                weekday: 0,
-                hour: 9,
-                minute: 35,
-                hasDay: true,
-                hasTime: true,
-                past: false,
-                present: true,
-                future: false,
-              },
-            },
-            {
-              name: "Deneme",
-              start: {
-                date: "2022-10-30",
-                time: "10:00",
-                year: 2022,
-                month: 10,
-                day: 30,
-                weekday: 0,
-                hour: 10,
-                minute: 5,
-                hasDay: true,
-                hasTime: true,
-                past: false,
-                present: true,
-                future: false,
-              },
-              end: {
-                date: "2022-10-30",
-                time: "11:00",
-                year: 2022,
-                month: 10,
-                day: 30,
-                weekday: 0,
-                hour: 10,
-                minute: 10,
-                hasDay: true,
-                hasTime: true,
-                past: false,
-                present: true,
-                future: false,
-              },
-            },
-            {
-              name: "Deneme",
-              start: {
-                date: "2022-10-30",
-                time: "10:00",
-                year: 2022,
-                month: 10,
-                day: 30,
-                weekday: 0,
-                hour: 10,
-                minute: 10,
-                hasDay: true,
-                hasTime: true,
-                past: false,
-                present: true,
-                future: false,
-              },
-              end: {
-                date: "2022-10-30",
-                time: "11:00",
-                year: 2022,
-                month: 10,
-                day: 30,
-                weekday: 0,
-                hour: 10,
-                minute: 15,
-                hasDay: true,
-                hasTime: true,
-                past: false,
-                present: true,
-                future: false,
-              },
-            },
-          ],
-        },
-        {
-          name: "Category3",
-          events: [],
-        },
-      ],
+      default: []
     },
     "time-type": {
       type: String,
