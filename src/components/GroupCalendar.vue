@@ -46,7 +46,9 @@
                     :style="getCss(e)"
                     class="wo-event"
                   >
-                    <strong> <slot :name="e.name" :item="e"></slot> </strong>
+                    <strong>
+                      <slot :name="e.key" :item="e">{{ e.name }}</slot>
+                    </strong>
                   </div>
                 </div>
               </div>
@@ -64,7 +66,7 @@ export default {
   props: {
     resources: {
       type: Array,
-      default: []
+      default: [],
     },
     "time-type": {
       type: String,
@@ -175,9 +177,13 @@ export default {
       }px; left: 0%; width: 100%;background:${colors}!important`;
     },
     selectDate(e) {
-      let hour = (e.layerY/4)/60 > 0 ? 8+((e.layerY/4)/60):8;
-      let minute = (e.layerY/4)-(Math.floor((e.layerY/4)/60)*60);
-      this.$emit('click:time', { $event: e, hour: Math.floor(hour), minute: Math.floor(minute)})
+      let hour = e.layerY / 4 / 60 > 0 ? 8 + e.layerY / 4 / 60 : 8;
+      let minute = e.layerY / 4 - Math.floor(e.layerY / 4 / 60) * 60;
+      this.$emit("click:time", {
+        $event: e,
+        hour: Math.floor(hour),
+        minute: Math.floor(minute),
+      });
     },
   },
 };
